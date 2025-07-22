@@ -1,6 +1,6 @@
 ### GPT social decision-making
 ### Between-group analysis: GPT4 vs. GPT3.5
-### Programmed by Feng XIAO (2024.12.6)
+### Programmed by Feng XIAO (2025.7.20)
 ### This R script requires one excel file: 'rawdata_study2'
 
 ### Preparation
@@ -106,6 +106,29 @@ domain_p$frame <-c('Total1','Total2','Total3','Total4','Total5')
 domain_p$domain <- factor(domain_p$domain, levels = c('Sense of fairness', 'Young: old vs. young kin',
                                                       'Middle-aged: old vs. young kin','Group-dependent & goal settings (inequal EV)',
                                                       'Group-dependent & goal settings (equal EV)'))
+
+## Benjamini-Hochberg corrections for p-values
+frame_p <- frame_p %>%
+  mutate(
+    p_value = 2 * (1 - pnorm(abs(log_AOR / log_AOR_SE)))
+  )
+domain_p <- domain_p %>%
+  mutate(
+    p_value = 2 * (1 - pnorm(abs(log_AOR / log_AOR_SE)))
+  )
+frame_p <- frame_p %>%
+  group_by(domain, description) %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  ) %>%
+  ungroup()
+domain_p <- domain_p %>%
+  group_by(domain, description) %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  ) %>%
+  ungroup()
+
 ef_table <- rbind(frame_p,domain_p)
 write.xlsx(ef_table, file = 'Outputs_study2/BetweenAnalysis (GPT4-GPT3.5).xlsx',
            rowNames = FALSE)

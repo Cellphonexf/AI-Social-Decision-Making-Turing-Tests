@@ -1,6 +1,6 @@
 ### GPT social decision-making
 ### Between-group analysis: Human vs. AI
-### Programmed by Feng XIAO (2024.12.1)
+### Programmed by Feng XIAO (2025.7.20)
 ### This R script requires one excel file: 'rawdata_study1'
 
 ### Preparation
@@ -354,6 +354,29 @@ domain_table$domain <- factor(domain_table$domain, levels = c('Human lives','Kin
                                                               'Personal stock shares'))
 domain_table$subject <- factor(domain_table$subject, levels = c('GPT-3.5','GPT-4'))
 domain_table$description <- factor(domain_table$description, levels = c('positive','negative'))
+
+## Benjamini-Hochberg corrections for p-values
+frame_table <- frame_table %>%
+  mutate(
+    p_value = 2 * (1 - pnorm(abs(log_AOR / log_AOR_SE)))
+  )
+domain_table <- domain_table %>%
+  mutate(
+    p_value = 2 * (1 - pnorm(abs(log_AOR / log_AOR_SE)))
+  )
+frame_table <- frame_table %>%
+  group_by(domain, description) %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  ) %>%
+  ungroup()
+domain_table <- domain_table %>%
+  group_by(domain, description) %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  ) %>%
+  ungroup()
+
 ## Data output and saved
 ef_table <- rbind(frame_table,domain_table)
 write.xlsx(ef_table, file = 'Outputs_study1/BetweenAnalysis (AI-Humans).xlsx',

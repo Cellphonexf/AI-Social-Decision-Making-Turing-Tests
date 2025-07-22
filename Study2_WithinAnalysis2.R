@@ -1,6 +1,6 @@
 ### GPT social decision-making
 ### Within-group analysis 2: proportion z-tests
-### Programmed by Feng XIAO (2025.2.2)
+### Programmed by Feng XIAO (2025.7.20)
 ### This R script requires one excel file: 'rawdata_study2'
 
 ### Preparation
@@ -63,6 +63,16 @@ cTable_3.5$p[3] <- result_7_9$p
 cTable_3.5$ci_low[3] <- result_7_9$ci_low
 cTable_3.5$ci_up[3] <- result_7_9$ci_up
 
+cTable_3.5 <- cTable_3.5 %>%
+  mutate(
+    p_adj = p.adjust(p, method = "BH")
+  )
+  #Benjamini¨CHochberg procedure for multiple comparison corrections
+
+write.xlsx(cTable_3.5,
+           file = 'Outputs_study2/WithinAnalysis_GPT3.5_1vs2.xlsx',
+           rowNames = FALSE)
+########################################################################################################
 ## GPT-4
 gpt4 <- read_excel('rawdata_study2.xlsx', sheet = 'gpt4', na = '---')
 Gpt4 <- gpt4[,-1]
@@ -103,6 +113,16 @@ cTable_4$p[3] <- result_7_9$p
 cTable_4$ci_low[3] <- result_7_9$ci_low
 cTable_4$ci_up[3] <- result_7_9$ci_up
 
+cTable_4 <- cTable_4 %>%
+  mutate(
+    p_adj = p.adjust(p, method = "BH")
+  )
+#Benjamini¨CHochberg procedure for multiple comparison corrections
+
+write.xlsx(cTable_4,
+           file = 'Outputs_study2/WithinAnalysis_GPT4_1vs2.xlsx',
+           rowNames = FALSE)
+########################################################################################################
 ## Human
 human <- read_excel('rawdata_study2.xlsx', sheet = 'human', na = '---')
 Human <- human[,-1]
@@ -142,3 +162,13 @@ cTable_h$z[3] <- result_7_9$z
 cTable_h$p[3] <- result_7_9$p
 cTable_h$ci_low[3] <- result_7_9$ci_low
 cTable_h$ci_up[3] <- result_7_9$ci_up
+
+cTable_h <- cTable_h %>%
+  mutate(
+    p_adj = p.adjust(p, method = "BH")
+  )
+#Benjamini¨CHochberg procedure for multiple comparison corrections
+
+write.xlsx(cTable_h,
+           file = 'Outputs_study2/WithinAnalysis_Human_1vs2.xlsx',
+           rowNames = FALSE)

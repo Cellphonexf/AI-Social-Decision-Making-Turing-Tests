@@ -1,6 +1,6 @@
 ### GPT social decision-making
 ### Within-group analysis 1: proportion z-tests
-### Programmed by Feng XIAO (2025.2.2)
+### Programmed by Feng XIAO (2025.7.20)
 ### This R script requires one excel file: 'rawdata_study2'
 
 ### Preparation
@@ -64,6 +64,9 @@ for (i in 10:12) {
   cTable_gpt3.5$ci_up[i] <- z.prop(b_p2, b_p1, a_p2+b_p2, a_p1+b_p1)$ci_up
 } #comparisons for RS: two-thirds - one-third
 
+cTable_gpt3.5$p_adj <- p.adjust(cTable_gpt3.5$p, method = "BH")
+  #Benjamini¨CHochberg procedure for multiple comparison corrections
+
 write.xlsx(cTable_gpt3.5, 
            file = 'Outputs_study2/WithinAnalysis_GPT3.5.xlsx',
            rowNames = FALSE)
@@ -125,6 +128,9 @@ for (i in 10:15) {
   cTable_gpt4$ci_up[i+3] <- z.prop(b_p, a_p, a_p+b_p, a_p+b_p)$ci_up
 } #comparisons for RS with 50-50
 
+cTable_gpt4$p_adj <- p.adjust(cTable_gpt4$p, method = "BH")
+  #Benjamini¨CHochberg procedure for multiple comparison corrections
+
 write.xlsx(cTable_gpt4, 
            file = 'Outputs_study2/WithinAnalysis_GPT4.xlsx',
            rowNames = FALSE)
@@ -169,6 +175,9 @@ for (i in 10:12) {
   cTable_h$ci_low[i] <- z.prop(b_p2, b_p1, a_p2+b_p2, a_p1+b_p1)$ci_low
   cTable_h$ci_up[i] <- z.prop(b_p2, b_p1, a_p2+b_p2, a_p1+b_p1)$ci_up
 } #comparisons for RS: two-thirds - one-third
+
+cTable_h$p_adj <- p.adjust(cTable_h$p, method = "BH")
+#Benjamini¨CHochberg procedure for multiple comparison corrections
 
 write.xlsx(cTable_h, 
            file = 'Outputs_study2/WithinAnalysis_Human.xlsx',

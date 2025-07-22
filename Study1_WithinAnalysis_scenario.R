@@ -1,6 +1,6 @@
 ### GPT social decision-making
 ### Analysis for decision scenarios
-### Programmed by Feng XIAO (2025.2.1)
+### Programmed by Feng XIAO (2025.7.20)
 ### This R script requires one excel file: 'scenario_study1'
 
 ### Preparation
@@ -60,6 +60,26 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+  #Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+  #Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_Human_ScenarioHL.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_Human_PairwiseHL.xlsx',
+           rowNames = FALSE)
+
 # Public properties: 6, 60, 600, 6000 paintings
 PP_human <- read_excel('scenario_study1.xlsx', sheet = 'PP_human', na = '---')
 summary_data <- PP_human %>%
@@ -96,6 +116,26 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_Human_ScenarioPP.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_Human_PairwisePP.xlsx',
+           rowNames = FALSE)
+
 # Personal stock shares: 6, 60, 600, 6000 dollars
 PS_human <- read_excel('scenario_study1.xlsx', sheet = 'PS_human', na = '---')
 summary_data <- PS_human %>%
@@ -132,6 +172,25 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_Human_ScenarioPS.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_Human_PairwisePS.xlsx',
+           rowNames = FALSE)
 ########################################################################################################
 ## GPT-3.5
 # Human lives: 6, 60, 600, 6000 lives
@@ -170,6 +229,26 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT3.5_ScenarioHL.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT3.5_PairwiseHL.xlsx',
+           rowNames = FALSE)
+
 # Public properties: 6, 60, 600, 6000 paintings
 PP_gpt3.5 <- read_excel('scenario_study1.xlsx', sheet = 'PP_gpt3.5', na = '---')
 summary_data <- PP_gpt3.5 %>%
@@ -206,6 +285,26 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT3.5_ScenarioPP.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT3.5_PairwisePP.xlsx',
+           rowNames = FALSE)
+
 # Personal stock shares: 6, 60, 600, 6000 dollars
 PS_gpt3.5 <- read_excel('scenario_study1.xlsx', sheet = 'PS_gpt3.5', na = '---')
 summary_data <- PS_gpt3.5 %>%
@@ -242,6 +341,25 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT3.5_ScenarioPS.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT3.5_PairwisePS.xlsx',
+           rowNames = FALSE)
 ########################################################################################################
 ## GPT-4
 # Human lives: 6, 60, 600, 6000 lives
@@ -280,6 +398,26 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT4_ScenarioHL.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT4_PairwiseHL.xlsx',
+           rowNames = FALSE)
+
 # Public properties: 6, 60, 600, 6000 paintings
 PP_gpt4 <- read_excel('scenario_study1.xlsx', sheet = 'PP_gpt4', na = '---')
 summary_data <- PP_gpt4 %>%
@@ -316,6 +454,26 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT4_ScenarioPP.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT4_PairwisePP.xlsx',
+           rowNames = FALSE)
+
 # Personal stock shares: 6, 60, 600, 6000 dollars
 PS_gpt4 <- read_excel('scenario_study1.xlsx', sheet = 'PS_gpt4', na = '---')
 summary_data <- PS_gpt4 %>%
@@ -352,3 +510,22 @@ pairwise_results <- lapply(group_pairs, function(pair) {
   )
 }) %>%
   bind_rows()
+
+binom_results <- binom_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (vs. 50-50)
+
+pairwise_results <- pairwise_results %>%
+  mutate(
+    p_adj = p.adjust(p_value, method = "BH")
+  )
+#Benjamini每Hochberg procedure for multiple comparison corrections (pairwise)
+
+write.xlsx(binom_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT4_ScenarioPS.xlsx',
+           rowNames = FALSE)
+write.xlsx(pairwise_results,
+           file = 'Outputs_study1/WithinAnalysis_GPT4_PairwisePS.xlsx',
+           rowNames = FALSE)
