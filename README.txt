@@ -1,4 +1,4 @@
-##AI Rationality vs. Human Rationality in Social Decision-Making: Psychological Turing Tests##
+##Evaluating Large Language Models’Ability to Predict Human Social Decision-Making Across Evolutionary-Sensitive Dimensions##
 
 Welcome to the GitHub repository for our research project. This repository contains the code and data used in our study.
 
@@ -26,4 +26,15 @@ Script for Viso: WithinAnalysis_Viso2.R
 - Generated graphs: WithinViso2.pdf
 - Final figure: Fig. 2 (refined using Adobe Illustrator)
 
-##Edited on February 14, 2025
+##Validation Study##
+
+Data: rawdata_replication.xlsx
+Script for Analysis: Replication_WithinAnalysis.R, Replication_BetweenAnalysis_HvsAI.R 
+Script for Viso: WithinAnalysis_Viso3.R
+
+- Run the script segment by segment to follow each step of our analysis
+- Output results are stored in folder 'Outputs_replication'
+- Generated graphs: WithinViso3.pdf
+- Final figure: Fig. 3 (refined using Adobe Illustrator)
+
+##Edited on July 22, 2025
