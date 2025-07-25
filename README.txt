@@ -1,4 +1,4 @@
-##Evaluating Large Language Models’Ability to Predict Human Social Decision-Making Across Evolutionary-Sensitive Dimensions##
+##AI vs. Human Rationality in Social Decision-Making: Evaluating the Ability of Large Language Models to Predict Human Behavior##
 
 Welcome to the GitHub repository for our research project. This repository contains the code and data used in our study.
 
