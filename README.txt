@@ -1,4 +1,4 @@
-##AI vs. Human Rationality in Social Decision-Making: Evaluating the Ability of Large Language Models to Predict Human Behavior##
+## Evaluating the Ability of Large Language Models to Predict Human Social Decisions##
 
 Welcome to the GitHub repository for our research project. This repository contains the code and data used in our study.
 
@@ -37,4 +37,4 @@ Script for Viso: WithinAnalysis_Viso3.R
 - Generated graphs: WithinViso3.pdf
 - Final figure: Fig. 3 (refined using Adobe Illustrator)
 
-##Edited on July 22, 2025
+##Edited on July 29, 2025
